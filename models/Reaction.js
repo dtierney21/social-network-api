@@ -1,4 +1,6 @@
-const { Schema, Types, model } = require('mongoose');
+const { Schema, Types } = require('mongoose');
+// Import moment to format the createdAt date
+const moment = require('moment');
 
 const recationSchema = new Schema(
     {
@@ -18,11 +20,12 @@ const recationSchema = new Schema(
         createdAt: {
             type: Date,
             default: Date.now,
+            get: (createdAtVal) => moment(createdAtVal).format('M/D/YYYY, h:mm:ss a'),
         },
     },
     {
         toJSON: {
-            getter: true,
+            getters: true,
         },
     }
 );
