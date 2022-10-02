@@ -56,4 +56,32 @@ module.exports = {
             })
             .catch((err) => res.json(err));
     },
+
+    addReaction({ params, body }, res) {
+        Thought.findOneAndUpdate(
+            { _id: params.thoughtId },
+            { $push: { reaction: body } },
+            { new: true, runValidators: true }
+        )
+            .then((thought) => {
+                if (!thought) {
+                    res.status(404).json({ message: 'No thought with that ID' });
+                    return;
+                }
+                res.json(thought);
+            })
+            .catch((err) => res.json(err));
+    },
+
+    removeReaction({ params }, res) {
+        Thought.findOneAndDelete({ _id: params.thoughtId })
+            .then((thought) => {
+                if (!thought) {
+                    res.status(404).json({ message: 'No thought with that ID' });
+                    return;
+                }
+                res.json(thought);
+            })
+            .catch((err) => res.json(err));
+    },
 };

@@ -2,10 +2,9 @@ const User = require('../models/User');
 
 module.exports = {
     getAllUsers(req, res) {
-        User.find({})
+        User.find()
             .then((users) => res.json(users))
             .catch((err) => {
-                console.log(err);
                 res.status(500).json(err);
             });
     },

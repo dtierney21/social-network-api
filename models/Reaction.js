@@ -2,7 +2,7 @@ const { Schema, Types } = require('mongoose');
 // Import moment to format the createdAt date
 const moment = require('moment');
 
-const recationSchema = new Schema(
+const reactionSchema = new Schema(
     {
         reactionId: {
             type: Schema.Types.ObjectId,
