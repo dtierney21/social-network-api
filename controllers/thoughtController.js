@@ -12,10 +12,11 @@ module.exports = {
     },
 
     getThoughtById({ params }, res) {
-        Thought.findOne({ _id: params.thoughtId });
-        then((thought) =>
-            !user ? res.status(404).json({ message: 'No thought with that ID' }) : res.json(thought)
-        ).catch((err) => res.status(500).json(err));
+        Thought.findOne({ _id: params.thoughtId })
+            .then((thought) =>
+                !user ? res.status(404).json({ message: 'No thought with that ID' }) : res.json(thought)
+            )
+            .catch((err) => res.status(500).json(err));
     },
 
     createThought({ params, body }, res) {
@@ -60,7 +61,7 @@ module.exports = {
     addReaction({ params, body }, res) {
         Thought.findOneAndUpdate(
             { _id: params.thoughtId },
-            { $push: { reaction: body } },
+            { $push: { reactions: body } },
             { new: true, runValidators: true }
         )
             .then((thought) => {
