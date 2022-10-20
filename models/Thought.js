@@ -30,7 +30,7 @@ const thoughtSchema = new Schema(
 );
 
 thoughtSchema.virtual('reactionCount').get(function () {
-    console.log(`look here: ${this.reactions.length}`);
+    //console.log(`look here: ${this.reactions.length}`);
     return this.reactions.length;
 });
 

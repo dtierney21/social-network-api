@@ -14,7 +14,7 @@ module.exports = {
     getThoughtById({ params }, res) {
         Thought.findOne({ _id: params.thoughtId })
             .then((thought) =>
-                !user ? res.status(404).json({ message: 'No thought with that ID' }) : res.json(thought)
+                !thought ? res.status(404).json({ message: 'No thought with that ID' }) : res.json(thought)
             )
             .catch((err) => res.status(500).json(err));
     },
